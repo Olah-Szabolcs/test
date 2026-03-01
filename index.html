@@ -31,7 +31,7 @@
       padding:env(safe-area-inset-top) env(safe-area-inset-right)
               env(safe-area-inset-bottom) env(safe-area-inset-left);
       user-select:none;
-      touch-action:pan-y; /* we handle horizontal swipes */
+      touch-action:pan-y;
     }
 
     img#photo{
@@ -45,7 +45,6 @@
       transition:opacity 120ms ease;
     }
 
-    /* simple top overlay like a gallery (no Open button) */
     .topbar{
       position:fixed;
       top:0; left:0; right:0;
@@ -84,7 +83,6 @@
       vertical-align:bottom;
     }
 
-    /* Tap zones for one-handed browsing */
     .tapZone{
       position:fixed;
       top:0; bottom:0;
@@ -94,7 +92,6 @@
     .tapZone.left{left:0}
     .tapZone.right{right:0}
 
-    /* Desktop arrows */
     .arrow{
       position:fixed;
       top:50%;
@@ -148,11 +145,8 @@
   <div class="loading" id="loading">Betöltés…</div>
 
   <script>
-    // Put your image filenames here (case-sensitive).
-    // If images are in repo root: basePath = ""
-    // If images are in /images/:   basePath = "images/"
-    const IMAGES = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png", "10.png", "11.png"];
-    const basePath = "images/"; // <-- change to "images/" if you use an images folder
+    const IMAGES = ["1.png","2.png","3.png","4.png","5.png","6.png","7.png","8.png","9.png","10.png","11.png"];
+    const basePath = "images/";
 
     const img = document.getElementById("photo");
     const counter = document.getElementById("counter");
@@ -196,19 +190,16 @@
     function next(){ setPhoto(idx + 1); }
     function prev(){ setPhoto(idx - 1); }
 
-    // Tap zones + arrows
     document.getElementById("tapLeft").addEventListener("click", prev);
     document.getElementById("tapRight").addEventListener("click", next);
     document.getElementById("arrowLeft").addEventListener("click", prev);
     document.getElementById("arrowRight").addEventListener("click", next);
 
-    // Keyboard navigation (desktop)
     window.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft") prev();
       if (e.key === "ArrowRight") next();
     });
 
-    // Swipe handling
     let startX = null, startY = null, tracking = false;
 
     window.addEventListener("touchstart", (e) => {
@@ -242,7 +233,6 @@
       startX = startY = null;
     }, { passive: true });
 
-    // Deep-link by hash (#N)
     function fromHash(){
       const h = location.hash.replace("#","");
       const n = parseInt(h, 10);
@@ -252,9 +242,9 @@
         setPhoto(0, { updateHash: true });
       }
     }
+
     window.addEventListener("hashchange", fromHash);
 
-    // Start
     if (!IMAGES.length) {
       loading.textContent = "No images listed in IMAGES[]";
     } else {
