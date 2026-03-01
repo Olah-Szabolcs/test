@@ -152,7 +152,6 @@
     const img = document.getElementById("photo");
     const counter = document.getElementById("counter");
     const nameEl = document.getElementById("name");
-    const openRaw = document.getElementById("openRaw");
     const loading = document.getElementById("loading");
 
     let idx = 0;
@@ -186,7 +185,6 @@
 
       counter.textContent = `${idx + 1} / ${IMAGES.length}`;
       nameEl.textContent = filename;
-      openRaw.href = src;
 
       if (updateHash) history.replaceState(null, "", `#${idx + 1}`);
     }
