@@ -145,7 +145,7 @@
   <div class="arrow left" id="arrowLeft" title="Previous">‹</div>
   <div class="arrow right" id="arrowRight" title="Next">›</div>
 
-  <div class="loading" id="loading">Loading…</div>
+  <div class="loading" id="loading">Betöltés…</div>
 
   <script>
     // Put your image filenames here (case-sensitive).
@@ -183,7 +183,7 @@
         };
       };
       pre.onerror = () => {
-        loading.textContent = "Failed to load image: " + filename;
+        loading.textContent = "Nem sikerült betölteni a képet: " + filename;
       };
       pre.src = src;
 
